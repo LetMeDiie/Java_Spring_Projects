@@ -1,4 +1,4 @@
-package kz.letmedie.paste.service.impl.past_list_filter;
+package kz.letmedie.paste.service;
 
 import kz.letmedie.paste.entity.Paste;
 

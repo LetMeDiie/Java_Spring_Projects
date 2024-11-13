@@ -1,6 +1,7 @@
-package kz.letmedie.paste.service.impl.hash;
+package kz.letmedie.paste.service.impl;
 
 import kz.letmedie.paste.api.PasteRequest;
+import kz.letmedie.paste.service.HashingService;
 import org.springframework.stereotype.Component;
 
 import java.nio.charset.StandardCharsets;
@@ -8,7 +9,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 @Component
-public class HashingServiceImpl implements HashingService{
+public class HashingServiceImpl implements HashingService {
     @Override
     public String hashing(PasteRequest pasteRequest) {
         try {

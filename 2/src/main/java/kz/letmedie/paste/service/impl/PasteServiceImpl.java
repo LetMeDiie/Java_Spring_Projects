@@ -1,19 +1,16 @@
 package kz.letmedie.paste.service.impl;
 
 import kz.letmedie.paste.api.PasteRequest;
-import kz.letmedie.paste.api.PasteResponse;
 import kz.letmedie.paste.api.PasteUrl;
 import kz.letmedie.paste.entity.Paste;
 import kz.letmedie.paste.exception.PasteExpiredException;
 import kz.letmedie.paste.exception.PasteNotFoundException;
 import kz.letmedie.paste.repository.PasteRepository;
 import kz.letmedie.paste.service.PasteService;
-import kz.letmedie.paste.service.impl.hash.HashingService;
-import kz.letmedie.paste.service.impl.past_list_filter.PastFilter;
+import kz.letmedie.paste.service.HashingService;
+import kz.letmedie.paste.service.PastFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

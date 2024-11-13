@@ -1,7 +1,8 @@
-package kz.letmedie.paste.service.impl.past_list_filter;
+package kz.letmedie.paste.service.impl;
 
 import kz.letmedie.paste.entity.Paste;
 import kz.letmedie.paste.entity.PasteStatus;
+import kz.letmedie.paste.service.PastFilter;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package kz.letmedie.paste.service.impl.hash;
+package kz.letmedie.paste.service;
 
 import kz.letmedie.paste.api.PasteRequest;
 
