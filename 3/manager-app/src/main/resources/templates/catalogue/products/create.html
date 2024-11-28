@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New product</title>
+</head>
+<body>
+<h1>New product</h1>
+<div data-th-if="${errors}">
+    <h2>Mistakes were made</h2>
+    <ul>
+        <li data-th-each="error:${errors}" data-th-text="${error}"></li>
+    </ul>
+</div>
+<a data-th-href="@{/catalogue/products/list}">List if products</a>
+<form method="post" data-th-action="@{/catalogue/products/create}">
+    <label>
+        Title:<br>
+        <input type="text" name="title" ><br>
+    </label>
+    <label>
+        Details:<br>
+        <textarea name="details"></textarea>
+    </label>
+    <button type="submit">Create</button>
+</form>
+</body>
+</html>
