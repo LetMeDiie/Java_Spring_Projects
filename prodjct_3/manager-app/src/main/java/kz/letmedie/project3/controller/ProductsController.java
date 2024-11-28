@@ -1,9 +1,9 @@
 package kz.letmedie.project3.controller;
 
+import kz.letmedie.project3.client.ProductsRestClient;
 import kz.letmedie.project3.entity.Product;
-import kz.letmedie.project3.payload.NewProductPayload;
-import kz.letmedie.project3.service.ProductService;
 import lombok.RequiredArgsConstructor;
+import org.example.payload.NewProductPayload;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,11 +17,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequiredArgsConstructor
 @RequestMapping("/catalogue/products")
 public class ProductsController {
-    private final ProductService productService;
+    private final ProductsRestClient productsRestClient;
 
     @GetMapping("/list")
     public String getProductsList(Model model){
-        model.addAttribute("products",productService.findAllProducts());
+        model.addAttribute("products",productsRestClient.findAllProducts());
         return "catalogue/products/list";
     }
 
@@ -40,8 +40,8 @@ public class ProductsController {
                     .map(ObjectError::getDefaultMessage).toList());
             return "catalogue/products/create";
         }
-        Product product = productService.createProduct(payload);
-        return "redirect:/catalogue/products/%d".formatted(product.getId());
+        Product product = productsRestClient.createProduct(payload);
+        return "redirect:/catalogue/products/%d".formatted(product.id());
     }
 
 }

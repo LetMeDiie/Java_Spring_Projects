@@ -1,30 +1,26 @@
 package kz.letmedie.project3.controller;
 
 import jakarta.servlet.http.HttpServletResponse;
+import kz.letmedie.project3.client.ProductsRestClient;
 import kz.letmedie.project3.entity.Product;
-import kz.letmedie.project3.payload.UpdateProductPayload;
-import kz.letmedie.project3.service.ProductService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.Banner;
-import org.springframework.http.HttpStatus;
+import org.example.payload.UpdateProductPayload;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.NoSuchElementException;
 
 @Controller
 @RequestMapping("/catalogue/products/{productId:\\d+}")
 @RequiredArgsConstructor
 public class ProductController {
-    private final ProductService productService;
-
+    private final ProductsRestClient productsRestClient;
     @ModelAttribute("product")
     public Product product(@PathVariable("productId") int productId){
-        return productService.findProduct(productId);
+        return productsRestClient.findProduct(productId).get();
     }
 
     @GetMapping()
@@ -46,13 +42,13 @@ public class ProductController {
                     .map(ObjectError::getDefaultMessage).toList());
             return "catalogue/products/edit";
         }
-        productService.updateProduct(product,updateProductPayload);
-        return "redirect:/catalogue/products/%d".formatted(product.getId());
+        productsRestClient.updateProduct(product.id(),updateProductPayload);
+        return "redirect:/catalogue/products/%d".formatted(product.id());
     }
 
     @PostMapping("/delete")
     public String deleteProduct(@ModelAttribute("product") Product product){
-        productService.deleteProduct(product.getId());
+        productsRestClient.deleteProduct(product.id());
         return "redirect:/catalogue/products/list";
     }
 

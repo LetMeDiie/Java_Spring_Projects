@@ -1,8 +1,8 @@
 package kz.letmedie.catalogue.mapper;
 
 import kz.letmedie.catalogue.entity.Product;
-import kz.letmedie.catalogue.payload.NewProductPayload;
-import kz.letmedie.catalogue.payload.UpdateProductPayload;
+import org.example.payload.NewProductPayload;
+import org.example.payload.UpdateProductPayload;
 
 public class ProductMapper {
     public static Product toProduct(NewProductPayload payload) {
