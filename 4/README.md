@@ -28,77 +28,62 @@ This project is a system for managing tasks. With this application, you can crea
   ```json
 - List of tasks
 
-  [
-   {
-    "id": 1,
-    "description": "Description of task",
-    "status": "Completed"
-    }
-   ]
-  - ,
-   [
-    {
-     "id": 2,
-     "description": "Description of task",
-     "status": "In progress"
-    }
-   ]
+        Response:
+           {
+             "id": 1,
+             "description": "description of task",
+             "taskStatus": "Task status"
+            } ... 
+            list of all tasks
 
 
 
 ## Get Tasks by Status
 - GET /api/tasks/{status}
 - Example: /api/tasks/in%20progress
-- Response:
-    [
-     {
-       "id": 1,
-       "description": "Description of task", 
-       "status": "In progress"
-     }
-    ]
 
-### Create a New Task
-- POST /api/tasks
-- Request Body:
-    [
-      {
-        "description": "Description of task",
-        "status": "In progress"
-      }
-    ]
-- Response:
-    [
-        {
-         "id": 1,
-         "description": "Description of task",
-         "status": "In progress"
-        }
-    ]
-
-## Specific Task
-### GET Task: /api/tasks/{taskId} 
-- Example: /api/tasks/1
         Response:
-        [
             {
              "id": 1,
              "description": "Description of task",
-             "status": "In progress"
+             "taskStatus": "{status}"
+            } ... list of all tasks with status = {status}
+
+### Create a New Task
+--Example: POST: /api/tasks
+
+        Request Body:
+            {
+             "description": "Description of task",
+             "taskStatus": "Task status"
             }
-        ]
-## Delete a Task
-- DELETE /api/tasks/{taskId}
+        Response:
+            {
+             "id": 1,
+             "description": "Updated description of task",
+             "taskStatus": "Task status"
+            }
+
+
+## Specific Task
+### GET Task: /api/tasks/{taskId} 
+
+        Example: /api/tasks/1
+        Response:
+            {
+             "id": 1,
+             "description": "description of task",
+             "taskStatus": "task status"
+            }
+
+## Update a Task
+- PUT /api/tasks/{taskId}
 - Example: /api/tasks/1
 
-Update a Task
-
-        PUT /api/tasks/{taskId}
-        Example: /api/tasks/1
         Request Body:
             {
              "description": "Updated description of task",
-             "taskStatus": "IN_PROGRESS"
+             "taskStatus": "Updated task status"
             }
         Response:
             {
@@ -106,5 +91,7 @@ Update a Task
              "description": "Updated description of task",
              "taskStatus": "IN_PROGRESS"
             }
-        
+## Delete a Task
+- DELETE /api/tasks/{taskId}
+- Example: /api/tasks/1        
 
