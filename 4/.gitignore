@@ -1,0 +1,12 @@
+*.class
+*.jar
+*.war
+*.ear
+target/
+.mvn/
+!.mvn/wrapper/maven-wrapper.jar
+.idea/
+*.log
+node_modules/
+jspm_packages/
+*.out
