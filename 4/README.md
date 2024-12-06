@@ -26,24 +26,30 @@ This project is a system for managing tasks. With this application, you can crea
 
   **Response:**
   ```json
-  [
-    {
-      "id": 1,
-      "description": "Description of task",
-      "status": "In procces"
-    },
-    {
-      "id": 2,
-      "title": "Task 2",
-      "description": "Description of task 2",
-      "status": "Completed"
-    }
-  ] 
+- List of tasks
 
-Get Tasks by Status
-GET /api/tasks/{status}
-Example: /api/tasks/in%20progress
-Response:
+  [
+   {
+    "id": 1,
+    "description": "Description of task",
+    "status": "Completed"
+    }
+   ]
+  - ,
+   [
+    {
+     "id": 2,
+     "description": "Description of task",
+     "status": "In progress"
+    }
+   ]
+
+
+
+## Get Tasks by Status
+- GET /api/tasks/{status}
+- Example: /api/tasks/in%20progress
+- Response:
     [
      {
        "id": 1,
@@ -52,37 +58,41 @@ Response:
      }
     ]
 
-Create a New Task
-POST /api/tasks
-Request Body:
-  {
-    "description": "Description of task",
-    "taskStatus": "NEW"
-  }
-Response:
-    {
-     "id": 1,
-     "description": "Description of task",
-     "taskStatus": "NEW"
-    }
+### Create a New Task
+- POST /api/tasks
+- Request Body:
+    [
+      {
+        "description": "Description of task",
+        "status": "In progress"
+      }
+    ]
+- Response:
+    [
+        {
+         "id": 1,
+         "description": "Description of task",
+         "status": "In progress"
+        }
+    ]
 
-
-Specific Task
-    GET Task
-        /api/tasks/{taskId}
-        Example: /api/tasks/1
+## Specific Task
+### GET Task: /api/tasks/{taskId} 
+- Example: /api/tasks/1
         Response:
+        [
             {
              "id": 1,
              "description": "Description of task",
-             "taskStatus": "NEW"
+             "status": "In progress"
             }
-    Delete a Task
-        DELETE /api/tasks/{taskId}
-        Example: /api/tasks/1
+        ]
+## Delete a Task
+- DELETE /api/tasks/{taskId}
+- Example: /api/tasks/1
 
-    
-    Update a Task
+Update a Task
+
         PUT /api/tasks/{taskId}
         Example: /api/tasks/1
         Request Body:
