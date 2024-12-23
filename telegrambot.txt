@@ -1,0 +1,61 @@
+Telegram Bot
+Goal: Create a Telegram bot that allows users to create, view, and delete a category tree.
+Main Requirements:
+	* The project must be implemented with Spring Boot.
+	* PostgreSQL will be used for storing category information.
+	* Code documentation is required.
+	* The Telegram API will be integrated using the TelegramBots library.
+	* Spring Data JPA will be used for database interactions.
+	* Follow SOLID principles.
+
+Evaluation Criteria:
+	* Correctness of command execution.
+	* Code structure, presence of comments, and documentation.
+	* Handling possible exceptions and user input errors.
+	* Use of OOP principles and design patterns.
+
+Main Functionalities:
+1. Command: /viewTree 	The category tree should be displayed in a structured format.
+2. Command: /addElement <element name> 	This element will be the root if it doesn't have a parent.
+3. Command: /addElement <parent element> <child element> 	Adds a child element to an existing parent element. If the parent element doesn't exist, display an appropriate message.
+4. Command: /removeElement <element name> 	When deleting a parent element, all its child elements should also be deleted. If the element is not found, display an appropriate message.
+5. Command: /help 	Displays a list of all available commands with a brief description.
+6. Command: /download 	Downloads an Excel document of the category tree in a format of your choice.
+
+
+Project Design:
+   Additional Requirement:
+	1. The name of each category must be unique within the entire hierarchy.
+
+
+The project will be split into two microservices:
+	1. Category Service:
+		Main Role: Manage business logic related to categories.
+		Functionality:
+		  * Adding new and deleting categories.
+		  * Generating and providing category tree data:
+			    * Converts category hierarchy into a structured format (tree).
+		  * Ensuring uniqueness of category names within the hierarchy.
+		  * Generating the category tree.
+		  * Downloading an Excel document with the category tree.
+		  * Interacting with the database.
+		  * Error handling:
+		    * Handling scenarios where categories are not found or name uniqueness is violated.
+	Type: 		This is an autonomous REST API. The Telegram Service interacts with it via HTTP requests.
+	Additional Features:
+		* Caching: 		  To speed up processing and minimize database queries, caching will be implemented (e.g., for the category tree).
+		* JSON Response Format: 		  Data will be provided in JSON format.
+
+	2. Telegram API Service:
+		Main Role: Manage communication with the Telegram API for the bot.
+		Functionality:
+		  * Accepting commands from users in Telegram.
+		  * Handling the following commands:
+		    * /viewTree: Requests the category tree from the Category Service and displays it to the user.
+		    * /addElement <name>: Sends a request to add a root category.
+		    * /addElement <parent> <child>: Sends a request to add a child category to an existing parent category.
+		    * /removeElement <name>: Deletes the category and its child categories.
+		    * /downloadTree: Requests an Excel document of the category tree from the Category Service and sends it to the user. 		A command pattern will be used for each command (though further planning on this will be done later).
+
+I'm not sure yet how the services will interact. For now, I’m probably going to use a simple approach with RestTemplate, as I don’t want to create a full-fledged microservice with configuration, etc. Should I instead opt for creating a complete microservice or leave that for a later iteration?
+
